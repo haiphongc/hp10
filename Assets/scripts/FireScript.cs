@@ -4,9 +4,11 @@ public class FireScript : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private hitscan weaponHitscan;
+    private FirstPersonController playerController;
 
     void Start()
     {
+        playerController = GetComponent<FirstPersonController>();
         // Automatically try to find the hitscan component on this GameObject if not manually assigned
         if (weaponHitscan == null)
         {
@@ -27,13 +29,14 @@ public class FireScript : MonoBehaviour
 
     void Update()
     {
+        if (weaponHitscan == null || (playerController != null && playerController.IsDead)) return;
+
+        if (Input.GetKeyDown(KeyCode.R)) weaponHitscan.TryReload();
+
         // Trigger weapon fire when the Fire1 button is pressed/held down
         if (Input.GetButton("Fire1"))
         {
-            if (weaponHitscan != null)
-            {
-                weaponHitscan.TryShoot();
-            }
+            weaponHitscan.TryShoot();
         }
     }
 }

@@ -570,38 +570,6 @@ MonoBehaviour:
   attackAnim: Z_Attack
   idleAnim: Z_Idle
   deathAnim: Z_FallingBack
---- !u!114 &588180346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 588180344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af47091633604c841b7af7da8ae77ff1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 2.5
-  rotationSpeed: 5
-  maxHealth: 90
-  attackDamage: 15
-  attackRate: 1.2
-  attackRange: 1.8
-  attackDelay: 0.35
-  flashColor: {r: 1, g: 0.2, b: 0.2, a: 1}
-  flashDuration: 0.12
-  knockbackForce: 0.35
-  staggerDuration: 0.15
-  audioSource: {fileID: 0}
-  attackSound: {fileID: 0}
-  hurtSound: {fileID: 0}
-  deathSound: {fileID: 0}
-  animator: {fileID: 0}
-  runAnim: Z_Run_InPlace
-  attackAnim: Z_Attack
-  idleAnim: Z_Idle
-  deathAnim: Z_FallingBack
 --- !u!195 &588180349
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -644,9 +612,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 2.2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!4 &707710567 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4115101639876266, guid: 0c4a58b408c72d141bb4ae5633ef3744, type: 3}
@@ -1085,7 +1053,6 @@ GameObject:
   - component: {fileID: 1170332125}
   - component: {fileID: 1170332126}
   - component: {fileID: 1170332128}
-  - component: {fileID: 1170332127}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1224,31 +1191,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a79c4e23d4d4b64bfa5fa9e6671a460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1170332127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1170332121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dc30e8ac8dbbe641b91fd6c59c9dc03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 35
-  fireRate: 0.08
-  maxDistance: 150
-  hitLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  fpsCamera: {fileID: 1170332123}
-  muzzlePoint: {fileID: 1969915162}
-  muzzleFlash: {fileID: 0}
-  muzzleFlashPrefab: {fileID: 0}
-  muzzleFlashLight: {fileID: 0}
-  muzzleLightDuration: 0.05
-  impactEffectPrefab: {fileID: 0}
 --- !u!114 &1170332128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1657,9 +1599,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4493914613880827488, guid: 6dc4cf4496348884d8ee27743ae38562, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 588180346}
     - targetCorrespondingSourceObject: {fileID: 4493914613880827488, guid: 6dc4cf4496348884d8ee27743ae38562, type: 3}
       insertIndex: -1
       addedObject: {fileID: 588180345}
@@ -2542,6 +2481,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6579131968468530234, guid: 08b83778daef56e4d87fd5a3254499d3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8782481847112166116}
+    - targetCorrespondingSourceObject: {fileID: 6579131968468530234, guid: 08b83778daef56e4d87fd5a3254499d3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8782481847112166117}
   m_SourcePrefab: {fileID: 100100000, guid: 08b83778daef56e4d87fd5a3254499d3, type: 3}
 --- !u!114 &8782481847112166105
 MonoBehaviour:
@@ -2606,11 +2548,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 35
-  fireRate: 0.08
+  fireRate: 0.15
+  magazineSize: 30
+  reloadDuration: 1.5
   maxDistance: 150
   hitLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   fpsCamera: {fileID: 1170332123}
   muzzlePoint: {fileID: 1969915162}
   muzzleFlash: {fileID: 0}
@@ -2618,6 +2562,19 @@ MonoBehaviour:
   muzzleFlashLight: {fileID: 0}
   muzzleLightDuration: 0.05
   impactEffectPrefab: {fileID: 0}
+--- !u!114 &8782481847112166117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6393484210183679358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df0c21ec0bbbd540aba4b8de14b54e2, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  weaponHitscan: {fileID: 8782481847112166116}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
